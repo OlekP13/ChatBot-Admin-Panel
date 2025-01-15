@@ -1,12 +1,24 @@
 import { Link } from "react-router";
 
 const ProjectItem = ({project, key}) => {
+
+    const copyCode = (code) => {
+        navigator.clipboard.writeText(code)
+        .then(() => {
+            console.log('Embed code copied to clipboard');
+            alert('Copied to clipboard!');
+        })  
+        .catch((err) => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
     return (
         <div key={key} className="project-item">
-            <h1 style={{marginBottom: "20px"}}>Project Name : {project.project_name}</h1>
-            <div style={{display: "flex", justifyContent:"center", alignItems:"center", marginBottom:"20px"}}>
+            <h1>Project Name : {project.project_name}</h1>
+            <div style={{display: "flex", justifyContent:"center", alignItems:"center"}}>
                 <h4 style={{marginRight: "15px"}}>Embed Code : </h4>
-                <p className="code">
+                <p className="code" onClick={() => copyCode(`<iframe src="` + project.published_link + `" width="400" height="300"></iframe>`)}>
                     {`<iframe src="` + project.published_link + `" width="400" height="300"></iframe>`}
                 </p>
             </div>

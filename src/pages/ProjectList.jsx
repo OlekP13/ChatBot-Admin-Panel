@@ -11,11 +11,8 @@ const ProjectList = () => {
         const fetchData = async () => { 
             try {  
                 const response = await axios.get('https://chatbot-dashboard.aurealone.com/api/lists');  
-                // setData(response.data); // Update state with fetched data  
-                console.log(response.data);
                 setProjects(response.data);
             } catch (error) {  
-                // setError(error); // Update state with error  
                 console.log(error);
             }  
         };  
